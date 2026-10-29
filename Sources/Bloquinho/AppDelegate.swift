@@ -88,7 +88,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         panel.allowedContentTypes = [.plainText, .rtf]
         panel.allowsMultipleSelection = true
         guard panel.runModal() == .OK else { return }
-        for url in panel.urls {
+        open(panel.urls)
+    }
+
+    /// Abre cada arquivo numa aba nova (ou na aba atual, se ela estiver vazia).
+    func open(_ urls: [URL]) {
+        for url in urls {
             guard let text = Self.read(url) else {
                 NSAlert(error: CocoaError(.fileReadUnknown, userInfo: [NSFilePathErrorKey: url.path])).runModal()
                 continue

@@ -8,7 +8,10 @@ Você abre, escreve e fecha. Na próxima vez, está tudo lá, sem precisar salva
 - **Abas**: cada aba é uma anotação diferente (⌘T abre uma nova).
 - **Salva sozinho**: ao fechar o app (botão vermelho ou ⌘Q) e abrir de novo, as abas voltam como estavam.
 - **Formatação leve**: negrito (⌘B), cores e marcadores (⇧⌘L). Texto colado de outros lugares entra limpo, sem a formatação de fora.
-- **Abrir e salvar arquivos**: abre `.txt` e `.rtf` (⌘O) e salva em `.rtf` (⌘S), que abre no TextEdit e no Word.
+- **Abrir e salvar arquivos**: abre `.txt` e `.rtf` (⌘O, ou arrastando o arquivo para a janela). Salva em `.rtf`, que guarda a formatação, ou em `.txt`, texto puro (⌘S e "Salvar como…").
+- **Números de linha** ao lado do texto e, no rodapé, a contagem de caracteres e palavras (da seleção, se houver).
+- **Localizar e substituir**: ⌘F, ⌥⌘F, ⌘G.
+- **Zoom**: ⌘+, ⌘− e ⌘0, ou a pinça no trackpad.
 - **Modo escuro**: segue o do Mac.
 
 Para jogar fora uma anotação, feche a aba dela (⌘W ou o "x" da aba). O app pede confirmação antes de apagar.
