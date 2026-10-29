@@ -1,0 +1,45 @@
+{
+  "fill" : "system-light",
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name-specializations" : [
+            { "value" : "linhas.svg" },
+            { "appearance" : "dark", "value" : "linhas-escuras.svg" }
+          ],
+          "name" : "linhas"
+        },
+        {
+          "glass" : false,
+          "image-name-specializations" : [
+            { "value" : "faixa.svg" },
+            { "appearance" : "dark", "value" : "faixa-escura.svg" }
+          ],
+          "name" : "faixa"
+        }
+      ],
+      "name" : "folha",
+      "shadow" : { "kind" : "neutral", "opacity" : 0.3 },
+      "specular" : true
+    },
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name-specializations" : [
+            { "value" : "fundo-claro.svg" },
+            { "appearance" : "dark", "value" : "fundo-escuro.svg" }
+          ],
+          "name" : "fundo"
+        }
+      ],
+      "name" : "fundo",
+      "shadow" : { "kind" : "none", "opacity" : 0 }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [ "macOS" ]
+  }
+}

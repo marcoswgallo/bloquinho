@@ -54,6 +54,9 @@ scripts/build-app.sh --install
 O app é instalado em `/Applications/Bloquinho.app`. Com `--dmg` no lugar de `--install`, o script gera
 `build/Bloquinho.dmg`.
 
+O ícone com versão para o modo escuro (`Resources/Bloquinho.icon`) só é compilado se o Xcode estiver
+instalado em `/Applications/Xcode.app`. Sem ele, o app sai com o ícone claro de sempre.
+
 ## Licença
 
 MIT. Veja [LICENSE](LICENSE).
