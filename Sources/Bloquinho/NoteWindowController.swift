@@ -26,6 +26,9 @@ final class NoteWindowController: NSWindowController, NSWindowDelegate, NSTextVi
         window.minSize = NSSize(width: 360, height: 240)
         super.init(window: window)
         window.delegate = self
+        // O botão vermelho fecha o app guardando tudo (as abas voltam ao reabrir).
+        window.standardWindowButton(.closeButton)?.target = NSApp
+        window.standardWindowButton(.closeButton)?.action = #selector(NSApplication.terminate(_:))
 
         textView.isRichText = true
         textView.allowsUndo = true
@@ -136,6 +139,12 @@ final class NoteWindowController: NSWindowController, NSWindowDelegate, NSTextVi
         window?.makeFirstResponder(textView)
     }
 
+    /// ⌘W. Não usa performClose, que "aperta" o botão vermelho e fecharia o app.
+    @objc func closeTab(_ sender: Any?) {
+        guard let window, windowShouldClose(window) else { return }
+        window.close()
+    }
+
     @objc func saveNote(_ sender: Any?) {
         guard let url = fileURL else { return saveNoteAs(sender) }
         write(to: url)
@@ -223,13 +232,8 @@ final class NoteWindowController: NSWindowController, NSWindowDelegate, NSTextVi
 
     // MARK: NSWindowDelegate
 
-    /// O botão vermelho fecha o app guardando tudo (as abas voltam ao reabrir).
     /// Fechar a aba (⌘W ou o x da aba) apaga a nota; pede confirmação se houver texto que não está salvo em arquivo.
     func windowShouldClose(_ sender: NSWindow) -> Bool {
-        if sender.isClickingCloseButton {
-            DispatchQueue.main.async { NSApp.terminate(nil) }
-            return false
-        }
         let hasText = !textView.string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         guard hasText, fileURL == nil || changedSinceFileSave else { return true }
         let alert = NSAlert()
@@ -245,16 +249,5 @@ final class NoteWindowController: NSWindowController, NSWindowDelegate, NSTextVi
     func windowWillClose(_ notification: Notification) {
         saveTimer?.invalidate()
         app?.noteClosed(self)
-    }
-}
-
-extension NSWindow {
-    /// O evento atual é um clique no botão vermelho desta janela? (⌘W e o x da aba também passam
-    /// pelo botão por dentro, então só a posição do clique diferencia.)
-    var isClickingCloseButton: Bool {
-        guard let event = NSApp.currentEvent, event.window === self,
-              event.type == .leftMouseDown || event.type == .leftMouseUp,
-              let button = standardWindowButton(.closeButton) else { return false }
-        return button.bounds.contains(button.convert(event.locationInWindow, from: nil))
     }
 }

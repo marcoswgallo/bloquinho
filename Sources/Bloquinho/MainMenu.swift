@@ -15,7 +15,7 @@ enum MainMenu {
             item("Nova aba", #selector(NSResponder.newWindowForTab(_:)), "t"),
             item("Abrir…", #selector(AppDelegate.openNote(_:)), "o"),
             .separator(),
-            item("Fechar aba", #selector(NSWindow.performClose(_:)), "w"),
+            item("Fechar aba", #selector(NoteWindowController.closeTab(_:)), "w"),
             item("Salvar", #selector(NoteWindowController.saveNote(_:)), "s"),
             item("Salvar como…", #selector(NoteWindowController.saveNoteAs(_:)), "s", [.command, .shift]),
         ]))
